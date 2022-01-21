@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerMove : MonoBehaviour
 {
 
     public float moveSpeed = 5;
@@ -19,7 +19,8 @@ public class playerController : MonoBehaviour
     void Update()
     {
 
-     Walk();   
+     Walk();
+     Jump();
     }
 
     void Walk() {
@@ -32,18 +33,31 @@ public class playerController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D() {
+    void Jump() {
 
-        isGround = true;
+        if(Input.GetKeyDown ( KeyCode.X ) && isGround) {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Force);
+        }
     }
 
-    void OnTriggerStay2D() {
-        
-        isGround = true;
+    void OnCollisionEnter2D(Collider2D other) {
+
+        if(other.gameObject.CompareTag("ground")) {
+            isGround = true;
+        }
     }
 
-    void OnTriggerExit2D() {
+    void OnCollisionStay2D(Collider2D other) {
         
-        isGround = false;
+        if(other.gameObject.CompareTag("ground")) {
+            isGround = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collider2D other) {
+        
+        if(other.gameObject.CompareTag("ground")) {
+            isGround = false;
+        }
     }
 }

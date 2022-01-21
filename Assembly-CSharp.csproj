@@ -37,7 +37,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets/scripts/Player/playerMove.cs" />
-     <Compile Include="Assets/scripts/playerController.cs" />
+     <Compile Include="Assets/scripts/Player/AvocadoThrow.cs" />
+     <Compile Include="Assets/scripts/Player/lump.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/lauro/Documentos/Unity/Versions/2020.3.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
