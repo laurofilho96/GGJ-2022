@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerMove : MonoBehaviour
 {
 
     public float moveSpeed = 5;
     public bool isRight = true;
     public float jumpSpeed = 3;
     public bool isGround = true;
-    
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
 
