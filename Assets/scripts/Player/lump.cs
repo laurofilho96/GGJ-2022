@@ -6,14 +6,22 @@ public class lump : MonoBehaviour {
 
     public float throwFowardSpeed = 50;
     public float throwUpSpeed = 300;
+    private float ImpulseDirection = 1;
 
-    void Start() {
-        
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(throwFowardSpeed, throwUpSpeed), ForceMode2D.Force);
+    private Transform player_transf;
+
+    private void Awake()
+    {
+        player_transf = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Update() {
-        
+    void Start() {
+        if (player_transf.rotation.y < 0){
+            ImpulseDirection = -1;
+        }
+        Destroy(gameObject, 5f);
+
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(throwFowardSpeed * ImpulseDirection, throwUpSpeed), ForceMode2D.Impulse);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -21,6 +29,7 @@ public class lump : MonoBehaviour {
         if(other.gameObject.CompareTag("ground")) {
             Destroy(this.gameObject);
         }
+
     }
     
 }

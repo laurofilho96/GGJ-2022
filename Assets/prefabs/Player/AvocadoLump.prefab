@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0611cd44ad8dea14cbd1d0af344d63aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -772436429070508741}
   m_Layer: 0
   m_Name: AvocadoLump
-  m_TagString: Untagged
+  m_TagString: PlayerLump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,10 +128,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fd3fa63902041bf80a14eaeccc2dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwFowardSpeed: 100
-  throwUpSpeed: 300
+  throwFowardSpeed: 30
+  throwUpSpeed: 32
 --- !u!58 &-772436429070508741
 CircleCollider2D:
   m_ObjectHideFlags: 0

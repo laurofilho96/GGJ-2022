@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AvocadoThrow : MonoBehaviour
 {    
-    public Transform lumpPrefab;
+    public GameObject lumpPrefab;
 
     void Update()
     {
@@ -14,7 +14,7 @@ public class AvocadoThrow : MonoBehaviour
 
     void Throw() {
 
-        if(Input.GetKeyDown( KeyCode.Z )) {
+        if(Input.GetKeyDown( KeyCode.Z )  || Input.GetKeyDown(KeyCode.J)) {
             Instantiate(lumpPrefab, transform.position, transform.rotation);
         }
     }

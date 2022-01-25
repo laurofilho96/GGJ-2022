@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - ground
+  - EnemyTag
+  - OnChao
+  - GoJump
+  - GoToLeft
+  - GoToRight
+  - Cutucada
+  - UnderGround
+  - EnemyBomb
+  - PlayerLump
   layers:
   - Default
   - TransparentFX
@@ -12,9 +21,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemies
+  - Terra
+  - UnderGround
   - 
   - 
   - 
