@@ -53,20 +53,21 @@
     <UnityVersion>2020.3.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Player\playerMove.cs" />
-    <Compile Include="Assets\Scripts\Enemy_Fly\EnemyFly_S.cs" />
-    <Compile Include="Assets\Scripts\Enemy_Patrulha\EnePatrulha_Cutucada_S.cs" />
-    <Compile Include="Assets\Scripts\Player_S.cs" />
-    <Compile Include="Assets\Scripts\Enemy_Patrulha\Enemy_S.cs" />
-    <Compile Include="Assets\Scripts\Player\lump.cs" />
-    <Compile Include="Assets\Scripts\Global_S.cs" />
-    <Compile Include="Assets\Scripts\Player\AvocadoThrow.cs" />
-    <Compile Include="Assets\Scripts\Enemy_Patrulha\EnemyDetect_S.cs" />
-    <Compile Include="Assets\Scripts\Enemy_Fly\EneFlyDetect_S.cs" />
-    <Compile Include="Assets\Scripts\Camera_S.cs" />
-    <Compile Include="Assets\Scripts\EnemyIA_S.cs" />
-    <Compile Include="Assets\Scripts\Enemy_Fly\EneFlyBomb_S.cs" />
-    <Compile Include="Assets\Scripts\Enemy_UnderG\EnemyUnder_S.cs" />
+    <Compile Include="Assets\scripts\Player\playerMove.cs" />
+    <Compile Include="Assets\scripts\Enemy_Fly\EnemyFly_S.cs" />
+    <Compile Include="Assets\scripts\Enemy_Patrulha\EnePatrulha_Cutucada_S.cs" />
+    <Compile Include="Assets\scripts\Player_S.cs" />
+    <Compile Include="Assets\scripts\Enemy_Patrulha\Enemy_S.cs" />
+    <Compile Include="Assets\scripts\Player\lump.cs" />
+    <Compile Include="Assets\scripts\Enemy_UnderG\EnemyUnder_S.cs" />
+    <Compile Include="Assets\scripts\Global_S.cs" />
+    <Compile Include="Assets\scripts\Player\AvocadoThrow.cs" />
+    <Compile Include="Assets\scripts\Enemy_Patrulha\EnemyDetect_S.cs" />
+    <Compile Include="Assets\scripts\Enemy_Fly\EneFlyDetect_S.cs" />
+    <Compile Include="Assets\scripts\Enemy_Fly\EneFlyBomb_S.cs" />
+    <Compile Include="Assets\scripts\Camera_S.cs" />
+    <Compile Include="Assets\scripts\EnemyIA_S.cs" />
+    <Compile Include="Assets\scripts\OrganizaPrefab_S.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7369543519082433954}
   - component: {fileID: 7369543519082433957}
   - component: {fileID: 1739812937953377210}
+  - component: {fileID: 3948955645724207913}
   m_Layer: 0
   m_Name: GO_RIGHT
   m_TagString: GoToRight
@@ -122,3 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0008caf378861e6418119f8aa7a29493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3948955645724207913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369543519082433956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdf181c4e8ed1c4986897ceb0b894ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetName: ROTAS_IA

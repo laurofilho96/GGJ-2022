@@ -21,6 +21,10 @@ public class Enemy_S : MonoBehaviour
 
     void Awake()
     {
+        if(player_obj == null)
+        {
+            player_obj = GameObject.FindGameObjectWithTag("Player");
+        }
         rb = GetComponent<Rigidbody2D>();
         SprRender = GetComponentInChildren<SpriteRenderer>();
         Physics2D.IgnoreLayerCollision(6, 6);

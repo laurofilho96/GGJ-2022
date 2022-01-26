@@ -74,7 +74,7 @@ public class playerMove : MonoBehaviour
         {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
         }
-
+       
         //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         //transform.position += move * moveSpeed * Time.deltaTime;
     }

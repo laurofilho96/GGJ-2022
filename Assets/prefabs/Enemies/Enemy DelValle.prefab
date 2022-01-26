@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 4062525616884088511}
   - component: {fileID: 4062525616884088496}
   - component: {fileID: 4062525616884088497}
+  - component: {fileID: 8505228318119800457}
   m_Layer: 6
   m_Name: Enemy DelValle
   m_TagString: EnemyTag
@@ -340,6 +341,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &8505228318119800457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062525616884088498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdf181c4e8ed1c4986897ceb0b894ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetName: ENEMIES
 --- !u!1 &4062525617373061921
 GameObject:
   m_ObjectHideFlags: 0
