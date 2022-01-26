@@ -17,6 +17,7 @@ public class Enemy_S : MonoBehaviour
     private SpriteRenderer SprRender;
     private int GoingTo_Right = 1; // -1 == LEFT | RIGHT == 1
     private bool canJump = true;
+    private bool sendoAtacado = false;
     [HideInInspector] public bool Atacando = false;
 
     void Awake()
@@ -45,10 +46,12 @@ public class Enemy_S : MonoBehaviour
     {
         if (transform.position.x > player_obj.transform.position.x)
         {
+            player_obj.GetComponent<playerMove>().Temporary_Break_W_Surface();
             player_obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(-forceImpulse, 0), ForceMode2D.Impulse);
         }
         else if (transform.position.x < player_obj.transform.position.x)
         {
+            player_obj.GetComponent<playerMove>().Temporary_Break_W_Surface();
             player_obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceImpulse, 0), ForceMode2D.Impulse);
 
         }
@@ -78,17 +81,40 @@ public class Enemy_S : MonoBehaviour
             e_Life -= 27;
             if(e_Life < 1)
             {
+                SpawnEne_S.call_NewEnemy = true;
                 Destroy(gameObject);
             }
             StartCoroutine("PequenaPausa");
+        }
+
+        if(coll.gameObject.tag == "DanoDash")
+        {
+            Atacando = true;
+            if (coll.gameObject.transform.position.x < transform.position.x)
+            {
+                rb.AddForce(new Vector2(55, 0), ForceMode2D.Impulse);
+            } else
+            {
+                rb.AddForce(new Vector2(-55, 0), ForceMode2D.Impulse);
+            }
+
+            e_Life -= 27;
+            if (e_Life < 1)
+            {
+                SpawnEne_S.call_NewEnemy = true;
+                Destroy(gameObject);
+            }
+
+            StartCoroutine(PequenaPausa());
         }
     }
 
     IEnumerator PequenaPausa()
     {
         SprRender.color = new Color(0.94f, 0.3f, 0.26f);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.5f);
         SprRender.color = new Color(1, 1, 1);
+        Atacando = false;
     }
 
 
