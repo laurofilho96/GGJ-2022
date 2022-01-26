@@ -1072,7 +1072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Project: GGJ 2022 - Dualidade - Update 26/01'
+  m_Text: 'Project: GGJ 2022 - Dualidade - Update 26/01 V2'
 --- !u!222 &323891538
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4777,7 +4777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1815821524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5321,6 +5321,10 @@ PrefabInstance:
     - target: {fileID: 1924677811280510812, guid: f9025b1cd8476b5a78f6268a1dd78b12, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016538397628103804, guid: f9025b1cd8476b5a78f6268a1dd78b12, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9025b1cd8476b5a78f6268a1dd78b12, type: 3}

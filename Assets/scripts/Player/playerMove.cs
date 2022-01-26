@@ -9,7 +9,7 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float jumpForce = 60f;
     private bool isGround = true;
     private bool enemyHit = false;
-    private bool OnUnderG = false; // Estar Subterraneo
+    [HideInInspector] public bool OnUnderG = false; // Estar Subterraneo
     private int p_Life = 2; // Vidas do Jogador
     
     //[SerializeField] private bool isRight = true;
@@ -24,6 +24,7 @@ public class playerMove : MonoBehaviour
 
     void Awake()
     {
+        p_Life = 2;
         rb = GetComponent<Rigidbody2D>();
         Skill_s = GetComponent<AvocadoThrow>();
         CapsuleColl = GetComponent<CapsuleCollider2D>();

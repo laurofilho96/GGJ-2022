@@ -19,7 +19,10 @@ void Update()
             Throw();
         } else
         {
-            Dash();
+            if (!GetComponent<playerMove>().OnUnderG)
+            {
+                Dash();
+            }
         }
     }
 
