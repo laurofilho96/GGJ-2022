@@ -9,7 +9,7 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float jumpForce = 60f;
     private bool isGround = true;
     private bool enemyHit = false;
-    [HideInInspector] public bool OnUnderG = false; // Estar Subterraneo
+    [HideInInspector] public bool OnUnderG = false; // Estar no Subterraneo
     private int p_Life = 2; // Vidas do Jogador
     
     //[SerializeField] private bool isRight = true;
@@ -70,10 +70,12 @@ public class playerMove : MonoBehaviour
                 break;
         }
     }
+
     public void Temporary_Break_W_Surface()
     {
+        // Jogador sofre dano, Atrasar retormada aos Controles "Surface"
         enemyHit = true;
-        StartCoroutine(PequenaPausa(0.5f));
+        StartCoroutine(PequenaPausa(0.5f)); // Metade de 1 segudo para "enemyHit" receber "False"
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
@@ -113,16 +115,18 @@ public class playerMove : MonoBehaviour
 
     void Turn_Lump()
     {
-        Skill_s.isLump = true;
-        sprRender.enabled = false;
+        p_Life--;
+        Skill_s.isLump = true; // Para de Atirar semente. ( Dash = true; )
+        sprRender.enabled = false; // Render do Abacate
         LumpRender.enabled = true;
         CapsuleColl.offset = new Vector2(0.3f, -1.16f);
         CapsuleColl.size = new Vector2(0.62f, 1.16f);
-        Invoke("Turn_Avocado", 10f);
+        Invoke("Turn_Avocado", 10f); // Voltar ao Normal em 10 segundos
+        global_s.StartLoad_Avocado(); // Os 10 segundos Visualmente, Hehehe.
     }
     void Turn_Avocado()
     {
-        p_Life++;
+        p_Life++; // Restituir Vida
         Skill_s.isLump = false;
         sprRender.enabled = true;
         LumpRender.enabled = false;
@@ -150,14 +154,13 @@ public class playerMove : MonoBehaviour
     {
         rb.gravityScale = gravidade;
 
+        // Se gravidade Zero
         if (gravidade < 1)
         {
-            //rb.velocity = Vector2.zero;
             StartCoroutine(PequenaPausa(0.15f));
-            //rb.AddForce(new Vector2(0, -30), ForceMode2D.Impulse);
-            OnUnderG = true;
+            OnUnderG = true; // Jogador foi para o Solo
         } else {
-            OnUnderG = false;
+            OnUnderG = false; // Voltou a Superficie
             rb.AddForce(new Vector2(0, 60), ForceMode2D.Impulse);
         }
     }
@@ -193,18 +196,18 @@ public class playerMove : MonoBehaviour
     }
     IEnumerator TomandoDano()
     {
-        sprRender.color = new Color(0.94f, 0.3f, 0.26f); // Sprite em Vermelho
-        LumpRender.color = new Color(0.94f, 0.3f, 0.26f); // Sprite em Vermelho
+        sprRender.color = new Color(0.94f, 0.3f, 0.26f); // Sprite em Vermelho | Abacate
+        LumpRender.color = new Color(0.94f, 0.3f, 0.26f); // Sprite em Vermelho | Lump
         yield return new WaitForSeconds(0.45f);
         sprRender.color = new Color(1, 1, 1); // Sprite Normal
         LumpRender.color = new Color(1, 1, 1); // Sprite Normal
         Turn_Lump();
-        p_Life--;
 
+        // Jogador is Dead xD
         if (p_Life < 1)
         {
-            global_s.StartCoroutine("Reset_Scene");
-            Destroy(gameObject);
+            global_s.StartCoroutine("Reset_Scene"); // Atrasar um pouco e Reiniciar Cena
+            Destroy(gameObject); // Apagar jogador
         }
     }
 

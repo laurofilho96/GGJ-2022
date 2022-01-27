@@ -14,10 +14,12 @@ public class AvocadoThrow : MonoBehaviour
 
 void Update()
     {
+        // Se é um Abacate então Atira
         if (!isLump)
         {
             Throw();
-        } else
+        }
+        else // Se é uma Semente então faz Dash
         {
             if (!GetComponent<playerMove>().OnUnderG)
             {

@@ -42,15 +42,34 @@ public class Enemy_S : MonoBehaviour
     {
         rb.velocity = new Vector2(e_speed * GoingTo_Right, rb.velocity.y);
     }
+    public void Verificar_PosPlayer()
+    {
+        if(player_obj.transform.position.x > transform.position.x)
+        {
+            GoingTo_Right = 1;
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (player_obj.transform.position.x < transform.position.x)
+        {
+            GoingTo_Right = -1;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
     public void push_player()
     {
         if (transform.position.x > player_obj.transform.position.x)
         {
-            player_obj.GetComponent<playerMove>().Temporary_Break_W_Surface();
+            player_obj.GetComponent<playerMove>().Temporary_Break_W_Surface(); // Travar controles do Jogador temporariamente
             player_obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(-forceImpulse, 0), ForceMode2D.Impulse);
+
+            //GoingTo_Right = 1;
+            //transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else if (transform.position.x < player_obj.transform.position.x)
         {
+            //GoingTo_Right = -1;
+            //transform.localRotation = Quaternion.Euler(0, 180, 0);
+
             player_obj.GetComponent<playerMove>().Temporary_Break_W_Surface();
             player_obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceImpulse, 0), ForceMode2D.Impulse);
 

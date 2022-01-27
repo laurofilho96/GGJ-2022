@@ -14,6 +14,7 @@ public class EnemyDetect_S : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
+            enemy_s.Verificar_PosPlayer();
             anim.Play("EnemyLanca_AttackT");
         }
     }
