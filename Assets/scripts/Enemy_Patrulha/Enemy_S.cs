@@ -22,7 +22,9 @@ public class Enemy_S : MonoBehaviour
 
     void Awake()
     {
-        if(player_obj == null)
+        transform.localRotation = Quaternion.Euler(0, 180, 0);
+
+        if (player_obj == null)
         {
             player_obj = GameObject.FindGameObjectWithTag("Player");
         }

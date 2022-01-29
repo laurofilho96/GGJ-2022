@@ -69,6 +69,10 @@ public class Global_S : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Restart_scene()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public IEnumerator Reset_Scene()
     {
