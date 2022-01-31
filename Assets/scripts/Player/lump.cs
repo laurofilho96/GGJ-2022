@@ -9,10 +9,14 @@ public class lump : MonoBehaviour {
     private float ImpulseDirection = 1;
 
     private Transform player_transf;
+    private AudioController auController;
+    private Global_S global_s;
 
     private void Awake()
     {
         player_transf = GameObject.FindGameObjectWithTag("Player").transform;
+        auController = FindObjectOfType<AudioController>();
+        global_s = FindObjectOfType<Global_S>();
     }
 
     void Start() {
@@ -27,6 +31,14 @@ public class lump : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         
         if(other.gameObject.CompareTag("ground")) {
+            Destroy(this.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("ACaixa"))
+        {
+            auController.Caixa_Quebrando();
+            global_s.Add_Points();
+            Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
 

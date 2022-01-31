@@ -42,7 +42,7 @@ public class SpawnEne_S : MonoBehaviour
         }
         e_ID++;
 
-        Instantiate(Enemy_Obj, L_Destino.position, Quaternion.identity);
+        // Instantiate(Enemy_Obj, L_Destino.position, Quaternion.identity);
         print("Inimigo: " + e_ID + " foi criado.");
     }
 }

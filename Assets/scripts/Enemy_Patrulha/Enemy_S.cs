@@ -20,8 +20,12 @@ public class Enemy_S : MonoBehaviour
     private bool sendoAtacado = false;
     [HideInInspector] public bool Atacando = false;
 
+    private AudioController auController;
+
     void Awake()
     {
+        auController = FindObjectOfType<AudioController>();
+
         transform.localRotation = Quaternion.Euler(0, 180, 0);
 
         if (player_obj == null)
@@ -95,9 +99,10 @@ public class Enemy_S : MonoBehaviour
         {
             rb.AddForce(Vector2.up * e_impulseJump, ForceMode2D.Impulse);
         }
-
+        // Danos do Jogador ( Sementes )
         if (coll.gameObject.tag == "PlayerLump")
         {
+            auController.Impacto();
             Destroy(coll.gameObject);
             e_Life -= 27;
             if(e_Life < 1)
@@ -107,22 +112,23 @@ public class Enemy_S : MonoBehaviour
             }
             StartCoroutine("PequenaPausa");
         }
-
-        if(coll.gameObject.tag == "DanoDash")
+        // Danos do Jogador ( Dash )
+        if (coll.gameObject.tag == "DanoDash")
         {
             Atacando = true;
+            auController.Impacto();
             if (coll.gameObject.transform.position.x < transform.position.x)
             {
-                rb.AddForce(new Vector2(55, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(60, 0), ForceMode2D.Impulse);
             } else
             {
-                rb.AddForce(new Vector2(-55, 0), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-60, 0), ForceMode2D.Impulse);
             }
 
             e_Life -= 27;
             if (e_Life < 1)
             {
-                SpawnEne_S.call_NewEnemy = true;
+                //SpawnEne_S.call_NewEnemy = true;
                 Destroy(gameObject);
             }
 

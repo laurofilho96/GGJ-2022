@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMove : MonoBehaviour
 {
     [Header("Atributos do Jogador")]
     [SerializeField] private float moveSpeed = 7.5f; // Velocidade
     [SerializeField] private float jumpForce = 60f;
-    private bool isGround = true;
+    //private bool isGround = true;
     private bool enemyHit = false;
     [HideInInspector] public bool OnUnderG = false; // Estar no Subterraneo
     private int p_Life = 2; // Vidas do Jogador
@@ -21,6 +22,15 @@ public class playerMove : MonoBehaviour
 
     [Header("Others Objects")]
     [SerializeField] private Global_S global_s;
+    private AudioController auController;
+
+    //Sistema de Chão
+    [Header("Pulo do Jogador")]
+    private bool isGround = true;
+    [SerializeField] private Transform VerificaGround;
+    [SerializeField] private float RaiodeVerificacao;
+    [SerializeField] private LayerMask layerChao;
+
 
     void Awake()
     {
@@ -30,6 +40,8 @@ public class playerMove : MonoBehaviour
         CapsuleColl = GetComponent<CapsuleCollider2D>();
         sprRender = GetComponentInChildren<SpriteRenderer>();
         LumpRender = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+
+        auController = FindObjectOfType<AudioController>();
     }
     // Inverte o lado do Jogador ao virar - Flip
     void ReversePlayer_Side()
@@ -61,6 +73,7 @@ public class playerMove : MonoBehaviour
     }
     void FixedUpdate()
     {
+        //Jump();
         // Troca de Controles ( Fora da Terra - Dentro da Terra )
         switch (OnUnderG)
         {
@@ -100,6 +113,14 @@ public class playerMove : MonoBehaviour
     }
     void Jump()
     {
+        if(isGround = Physics2D.OverlapCircle(VerificaGround.position, RaiodeVerificacao, layerChao))
+        {
+            print("TaNoChao");
+            isGround = true;
+        } else
+        {
+            print("Não esta");
+        }
         // Player Jump ( Jump ficou melhor no Update )
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Space) && isGround)
         {
@@ -119,8 +140,8 @@ public class playerMove : MonoBehaviour
         Skill_s.isLump = true; // Para de Atirar semente. ( Dash = true; )
         sprRender.enabled = false; // Render do Abacate
         LumpRender.enabled = true;
-        CapsuleColl.offset = new Vector2(0.3f, -1.16f);
-        CapsuleColl.size = new Vector2(0.62f, 1.16f);
+        CapsuleColl.offset = new Vector2(0.2f, -0.84f);
+        CapsuleColl.size = new Vector2(1.23f, 1.61f);
         Invoke("Turn_Avocado", 10f); // Voltar ao Normal em 10 segundos
         global_s.StartLoad_Avocado(); // Os 10 segundos Visualmente, Hehehe.
     }
@@ -130,7 +151,7 @@ public class playerMove : MonoBehaviour
         Skill_s.isLump = false;
         sprRender.enabled = true;
         LumpRender.enabled = false;
-        CapsuleColl.offset = new Vector2(0.04f, -0.05f);
+        CapsuleColl.offset = new Vector2(0.13f, -0.02f);
         CapsuleColl.size = new Vector2(1.2f, 3.27f);
     }
 
@@ -146,9 +167,24 @@ public class playerMove : MonoBehaviour
 
         if (collTrigger.gameObject.tag == "UnderGround")
         {
-            Sistema_UnderGround(0);
+            //Sistema_UnderGround(0);
+            Morte_Jogador();
         }
-    }
+
+        if (collTrigger.gameObject.tag == "CheckPoint")
+        {
+            global_s.checkPoint = new Vector2(collTrigger.transform.position.x, transform.position.y);
+            collTrigger.enabled = false;
+            print("Fez CHEKIN");
+            collTrigger.GetComponent<SpriteRenderer>().color = new Color(0f, 0.79f, 1f);
+        }
+        if (collTrigger.gameObject.tag == "FimDeJogo")
+        {
+            SceneManager.LoadScene(1);
+        }
+
+
+        }
 
     void Sistema_UnderGround(int gravidade)
     {
@@ -183,10 +219,10 @@ public class playerMove : MonoBehaviour
     // ================= COLISSION ================= 
 
     void OnCollisionEnter2D(Collision2D other) {
-
-        if(other.gameObject.CompareTag("ground")) {
+        /*
+        if(other.gameObject.CompareTag("ground") || other.gameObject.CompareTag("ACaixa")) {
             isGround = true;
-        }
+        }*/
 
         if (other.gameObject.CompareTag("EnemyBomb"))
         {
@@ -206,9 +242,21 @@ public class playerMove : MonoBehaviour
         // Jogador is Dead xD
         if (p_Life < 1)
         {
-            global_s.StartCoroutine("Reset_Scene"); // Atrasar um pouco e Reiniciar Cena
-            Destroy(gameObject); // Apagar jogador
+            //global_s.StartCoroutine("Reset_Scene"); // Atrasar um pouco e Reiniciar Cena
+            //Destroy(gameObject); // Apagar jogador
+            Morte_Jogador();
         }
+    }
+
+    void Morte_Jogador()
+    {
+        auController.Jogador_Morte();
+
+        transform.position = global_s.checkPoint;
+        p_Life = 2;
+        global_s.TurnFast_Avocado();
+        Turn_Avocado();
+        global_s.Less_Lives();
     }
 
     void OnCollisionExit2D(Collision2D other) {

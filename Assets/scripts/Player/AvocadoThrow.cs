@@ -11,8 +11,15 @@ public class AvocadoThrow : MonoBehaviour
     [Header("Lump")]
     [SerializeField] private BoxCollider2D BoxDash;
 
+    private AudioController auController;
 
-void Update()
+
+    void Awake()
+    {
+        auController = FindObjectOfType<AudioController>();
+    }
+
+    void Update()
     {
         // Se é um Abacate então Atira
         if (!isLump)
@@ -32,6 +39,7 @@ void Update()
 
         if(Input.GetKeyDown( KeyCode.Z )  || Input.GetKeyDown(KeyCode.J)) {
             Instantiate(lumpPrefab, transform.position, transform.rotation);
+            auController.Atirando_Caroco();
         }
     }
     void Dash()
@@ -39,6 +47,7 @@ void Update()
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.J))
         {
             DoingDash = true;
+            auController.Caroco_Dash();
             StartCoroutine(PequenaPausa(0.3f));
 
             if (transform.rotation.y < 0)
